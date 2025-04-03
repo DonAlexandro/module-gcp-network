@@ -105,19 +105,19 @@ resource "google_compute_route" "public_route" {
 }
 
 resource "google_compute_route" "private_route_a" {
-  name        = "${local.vpc_name}-private-route-a"
-  network     = google_compute_network.main.id
-  dest_range  = "0.0.0.0/0"
-  priority    = 1000
-  next_hop_instance = google_compute_router.router.self_link
+  name             = "${local.vpc_name}-private-route-a"
+  network          = google_compute_network.main.id
+  dest_range       = "0.0.0.0/0"
+  priority         = 1000
+  next_hop_gateway = "default-internet-gateway"
 }
 
 resource "google_compute_route" "private_route_b" {
-  name        = "${local.vpc_name}-private-route-b"
-  network     = google_compute_network.main.id
-  dest_range  = "0.0.0.0/0"
-  priority    = 1000
-  next_hop_instance = google_compute_router.router.self_link
+  name             = "${local.vpc_name}-private-route-b"
+  network          = google_compute_network.main.id
+  dest_range       = "0.0.0.0/0"
+  priority         = 1000
+  next_hop_gateway = "default-internet-gateway"
 }
 
 ## Cloud DNS (Equivalent to AWS Route 53 Private Zone)
